@@ -1,0 +1,11 @@
+{
+    "categories": [
+        {"id": 1, "title": "Fridges"},
+        {"id": 2, "title": "Kettles"},
+        {"id": 3, "title": "Television"}
+    ],
+    "products": [
+        {"id": 1, "codid": 1, "title": "Beko white bridges freezer" },
+        {"id": 1, "codid": 1, "title": "Whirlpool white pool bridges freezer"}
+    ]
+}
