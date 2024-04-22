@@ -68,3 +68,16 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+# STORE APP PROJECT.
+
+### set up a json server for api
+-- install json server in the terminal with this command "npm install -g json-server".
+-- create a folder in the src file and then create a file with an extension of .json
+-- create a new object in the file with the .json extention.
+-- to give it a testing, go to the terminal and do "json-server --watch src/db/db.json -- port 3001".
+-- give it a port of 3001 since our react app runs on a port of 3000 while using npx-create-react-app.
+-- set up a port for the json file create in the src in the terminal using this command.
+

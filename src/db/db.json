@@ -6,6 +6,6 @@
     ],
     "products": [
         {"id": 1, "codid": 1, "title": "Beko white bridges freezer" },
-        {"id": 1, "codid": 1, "title": "Whirlpool white pool bridges freezer"}
+        {"id": 2, "codid": 1, "title": "Whirlpool white pool bridges freezer"}
     ]
 }
