@@ -1,58 +1,37 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import Basket from './components/Basket';
+import Checkout from './components/Checkout';
+import ProductDetails from './components/ProductDetails';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Categories from './components/Categories';
-import Products from './components/Products'
-import { getCategories, getProducts } from './fetcher';
+import Layout from './components/Layout';
+import { useState, useEffect } from 'react';
+import { getCategories } from './fetcher';
 
 function App() {
-const [categories, setCategories] = useState({errorMssg: " ", responseData: []})
-const [products, setProducts] = useState({errorMssg: " ", responseData: []})
+  const [categories, setCategories] = useState({errorMssg: " ", responseData: []})
 
-const fetchApis = async () => {
-const responseObject = await getCategories();
-setCategories(responseObject)
-} 
 
-const handleCategoryClick = async (id) => {
-  const responseObject = await getProducts(id)
-    setProducts(responseObject)
-}
-
-useEffect(() => {
-  fetchApis() 
-  handleCategoryClick()
-}, [])
-
-const renderCategories = () => {
-return categories.responseData.map(c => (
-  <Categories key={c.id} id={c.id} title={c.title} onCategoryClick={()=> handleCategoryClick(c.id)} />
- ))
-}
-
-const renderProducts = () => {
-  return products.responseData.map(p => 
-    <Products key={p.id} {...p}>{p.title}</Products> 
-  )
-}
+    const fetchApis = async () => {
+        const responseObject = await getCategories();
+        setCategories(responseObject)
+        } 
+        useEffect(() => {
+          fetchApis() 
+        }, [])
 
   return (
     <>
-    <header>Hello</header>
-    <section>
-      <nav>
-        {categories.errorMssg && <div>Error: {categories.errorMssg}</div>}
-      {categories && renderCategories()}
-      </nav>
-      <main>
-        <h1>Products</h1>
-        {products.errorMssg && <div>Error: {products.errorMssg}</div>}
-        {products && renderProducts()}
-      </main>
-    </section>
-    <footer>
-      
-    </footer>
-    
+    <BrowserRouter>
+    <Routes>
+    <Route path='/' element={<Layout categories={categories} />} >
+      <Route path='products/:productId' element={<ProductDetails/>} />
+      <Route path='basket' element={<Basket />} />
+      <Route path='checkout'element={<Checkout />} />
+      <Route path='categories/:categoryId' element={<Categories/>}/>
+      </Route>
+    </Routes>
+    </BrowserRouter>
     </>
   );
 }

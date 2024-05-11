@@ -1,15 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Products({id,title,image,specs,features,price,stock}) {
+  const navigate = useNavigate()
   return (
     <>
     <article>
       <div className='product-title' key={id}>
-        {title}
+        <Link to={`/products/${id}`}>{title}</Link>
       </div>
       <figure>
         <div className='product-image-container'>
-          <img src={`./assets/${image}`} alt={title}/>
+          <img src={`/assets/${image}`} alt={title}/>
         </div>
       </figure>
       <aside>
@@ -26,8 +29,8 @@ function Products({id,title,image,specs,features,price,stock}) {
         <div className='product-info-features'>
           <h1>Features</h1>
          <ul>
-          {features?.map((f)=>{
-            return <li>{f}</li>
+          {features?.map((f, i)=>{
+            return <li key={`feature ${i}`}>{f}</li>
           })}
          </ul>
         </div>
@@ -41,7 +44,7 @@ function Products({id,title,image,specs,features,price,stock}) {
           <label>Free Delivery</label>
         </div>
         <div className='product-action'>
-          <button>View Products</button>
+          <button onClick={() => navigate(`/products/${id}`)}>View Products</button>
           <button>Add to Action</button>
         </div>
       </aside>
